@@ -1,38 +1,86 @@
-.App {
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0 auto;
+  background: linear-gradient(to top, #4C76D1, #57D865) no-repeat;
+  background-attachment: fixed;
+
+}
+
+.calculator-grid {
+  display: grid;
+  width: 100%;
+  place-items: center;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+  row-gap: 1px;
+  column-gap: 1px;
+  grid-template-rows: 30px 30px 30px;
+  grid-template-columns: 25% 10% 25%;
+  grid-template-areas:
+  ". . ."
+  "title title title"
+  ". . ."
+  ". . ."
+  "left-a mid-a right-a"
+  "left-b mid-a right-b";
+}
+
+.item-title {
+  background-color: transparent;
+  height: fit-content;
+  width: fit-content;
+  padding: 15px;
+  grid-area: title;
+  text-align: center;
+  font-weight: 600;
+  font-size: 35px;
+  margin-bottom: 20px;
+}
+
+.item-a {
+  grid-area: left-a;
+  border: 1px solid #a1a1a1;
+  height: 50px;
+  width: 300px;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.item-c {
+  grid-area: mid-a;
+  height: fit-content;
+  font-weight: 600;
+  color: #000;
+  font-size: 35px;
+  border: 1px solid #a1a1a1; 
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.item-b {
+  grid-area: right-a;
+  border: 1px solid #a1a1a1;
+  height: 50px;
+  width: 300px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.numTypes-a {
+  grid-area: left-b;
+  -webkit-border-radius: 0;
+  border: 0;
+  outline: 1px solid #ccc;
+  outline-offset: -1px;
+  height: 20px;
+  width: 300px;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.numTypes-b {
+  grid-area: right-b;
+  -webkit-border-radius: 0;
+  border: 0;
+  outline: 1px solid #ccc;
+  outline-offset: -1px;
+  height: 20px;
+  width: 300px;
 }
