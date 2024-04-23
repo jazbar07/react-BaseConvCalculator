@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { TextField } from "@mui/material";
+
 import './styles/inputbox.css';
 
 const InputBox = () => {
@@ -25,7 +27,7 @@ const InputBox = () => {
     return (
         <div>
             <form className="main-input" onSubmit={ handleSubmit }>
-                <input className="input-box" type="text" name="input" 
+                <TextField className="input-box" type="text" name="input" 
                     value={ input } onChange={ handleInput }/>
                 <select className="select-box" name="base cases"
                     value={ baseCase } onChange={ handleCase } >
@@ -34,10 +36,31 @@ const InputBox = () => {
                     <option value="Hexadecimal">Hexadecimal</option>
                     <option value="Octal">Octal</option>
                 </select>
-                <input type="submit" value="submit" />
+                <input className="submit-box" type="submit" value="submit" />
             </form>
         </div>
     );
 };
 
 export default InputBox;
+
+
+/* code that may be added to mod select section-
+import Select from 'react-select'
+
+const options = ([
+    { value: 'decimal', label: 'Decimal' },
+    { value: 'binary', label: 'Binary' },
+    { value: 'hexadecimal', label: 'Hexadecimal' },
+    { value: 'octal', label: 'Octal' }
+  ]);
+
+  
+const selectBox = () => {
+    return (
+        <Select options={ option }
+        />
+    )
+}
+
+export default selectBox; */
