@@ -1,0 +1,20 @@
+.main-box {
+    background-color: #D9D9D9;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    margin: auto;
+    width: 50%;    
+    height: 420px;
+
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+}
+
+.output-box {
+    background-color: #F4F4F4;
+    border: inset 1px #F4F4F4;
+    width: 80%;
+    height: 50px;
+}
