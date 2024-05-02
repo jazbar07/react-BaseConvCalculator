@@ -1,26 +1,39 @@
 import React, { useState } from 'react';
-import { TextField } from "@mui/material";
+import Select from 'react-select';
 
+import { decimalConvert } from './utils/conversions';
+
+import { TextField } from "@mui/material";
 import './styles/inputbox.css';
 
-const InputBox = () => {
+const InputBox = ({ updateResults }) => {
+    
+    const options = [
+        { value: 'Decimal', label: 'Decimal' },
+        { value: 'Binary', label: 'Binary' },
+        { value: 'Hexadecimal', label: 'Hexadecimal' },
+        { value: 'Octal', label: 'Octal' }
+      ];
+
     const [input, setInput] = useState ('');
-    const [baseCase, setCase] = useState ('Decimal');
+    const [base, setBase] = useState (null);
 
     const handleInput = (e) => {
         setInput (e.target.value);
     };
 
-    const handleCase = (e) => {
-        setCase (e.target.value);
+    const handleBase = ( base ) => {
+        setBase (base);
     }
 
     const handleSubmit = (e) => {
-        // keeps page froom doing normal html default response of refreshing when submit
+        // keeps page from doing normal html default response of refreshing when submit
         e.preventDefault();
 
-        console.log ('Inputed Value', input);
-        console.log ('Base Case:', baseCase);
+        const fillResults = decimalConvert (input, base.value);
+        console.log ("the base being passed in is: " + base.value);
+        updateResults(fillResults);
+
     }
 
 
@@ -29,13 +42,9 @@ const InputBox = () => {
             <form className="main-input" onSubmit={ handleSubmit }>
                 <TextField className="input-box" type="text" name="input" 
                     value={ input } onChange={ handleInput }/>
-                <select className="select-box" name="base cases"
-                    value={ baseCase } onChange={ handleCase } >
-                    <option value="Decimal">Decimal</option>
-                    <option value="Binary">Binary</option>
-                    <option value="Hexadecimal">Hexadecimal</option>
-                    <option value="Octal">Octal</option>
-                </select>
+                <Select className="select-box" options={ options } 
+                    defaultValue={ options[0] } value={ base }
+                    onChange={ handleBase }  />
                 <input className="submit-box" type="submit" value="submit" />
             </form>
         </div>
@@ -43,24 +52,3 @@ const InputBox = () => {
 };
 
 export default InputBox;
-
-
-/* code that may be added to mod select section-
-import Select from 'react-select'
-
-const options = ([
-    { value: 'decimal', label: 'Decimal' },
-    { value: 'binary', label: 'Binary' },
-    { value: 'hexadecimal', label: 'Hexadecimal' },
-    { value: 'octal', label: 'Octal' }
-  ]);
-
-  
-const selectBox = () => {
-    return (
-        <Select options={ option }
-        />
-    )
-}
-
-export default selectBox; */
